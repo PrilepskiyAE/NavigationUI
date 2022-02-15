@@ -2,4 +2,10 @@
     <string name="app_name">NavigationUI</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button">Button</string>
+    <string name="fragment1">Fragment1</string>
+    <string name="fragment2">Fragment2</string>
+    <string name="fragment3">Fragment3</string>
+    <string name="fragment4">Fragment4</string>
+    <string name="fragment5">Fragment5</string>
 </resources>

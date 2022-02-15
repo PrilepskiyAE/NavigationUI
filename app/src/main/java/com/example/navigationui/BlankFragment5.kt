@@ -10,7 +10,7 @@ import com.example.navigationui.databinding.FragmentBlank5Binding
 import com.example.navigationui.databinding.FragmentBlankBinding
 
 
-class BlankFragment5 : Fragment() {
+class BlankFragment5 : BaseFragment() {
 
     private var _binding: FragmentBlank5Binding? = null
     private val mBinding get() = _binding ?: throw RuntimeException("FragmentBlankBinding fragment error")
@@ -25,8 +25,9 @@ class BlankFragment5 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.button.setOnClickListener {
-            val navController = Navigation.findNavController(view)
-            navController.navigate(R.id.action_blankFragment5_to_blankFragment)
+          //  val navController = Navigation.findNavController(view)
+          //  navController.navigate(R.id.action_blankFragment5_to_blankFragment)
+            BaseFragment.navigate(view,R.id.action_blankFragment5_to_blankFragment)
         }
     }
 }

@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import com.example.navigationui.databinding.FragmentBlank2Binding
 import com.example.navigationui.databinding.FragmentBlankBinding
 
-class BlankFragment2 : Fragment() {
+class BlankFragment2 : BaseFragment() {
     private var _binding: FragmentBlank2Binding? = null
     private val mBinding get() = _binding ?: throw RuntimeException("FragmentBlankBinding fragment error")
 
@@ -24,8 +24,9 @@ class BlankFragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.button.setOnClickListener {
-            val navController = Navigation.findNavController(view)
-            navController.navigate(R.id.action_blankFragment2_to_blankFragment3)
+         //   val navController = Navigation.findNavController(view)
+          //  navController.navigate(R.id.action_blankFragment2_to_blankFragment3)
+            BaseFragment.navigate(view,R.id.action_blankFragment2_to_blankFragment3)
         }
     }
 }
