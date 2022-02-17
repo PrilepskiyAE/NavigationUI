@@ -43,10 +43,9 @@ class BlankFragment2 : BaseFragment() {
         mBinding.button.setOnClickListener {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    blankViewModel.uiState.collect {
+
                         blankViewModel.uiState.collect {
                             NavigateState(it, view)
-                        }
                     }
                 }
                 //BaseFragment.navigate(view,R.id.action_blankFragment2_to_blankFragment3)

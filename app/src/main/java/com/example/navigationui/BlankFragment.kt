@@ -46,9 +46,9 @@ class BlankFragment : BaseFragment() {
             lifecycleScope.launch {
                repeatOnLifecycle(Lifecycle.State.STARTED){
                    blankViewModel.uiState.collect {
-                       blankViewModel.uiState.collect {
+
                            NavigateState(it, view)
-                       }
+
                    }
                }
 
