@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
+import com.example.navigationui.databinding.FragmentBlank3Binding
 import com.example.navigationui.databinding.FragmentBlank5Binding
 import com.example.navigationui.databinding.FragmentBlankBinding
 import com.example.navigationui.viewmodel.BlankViewModel
@@ -20,42 +21,20 @@ import com.example.navigationui.viewmodel.LatestNavigateUiState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+class BlankFragment5 : BaseFragment<FragmentBlank5Binding>() {
 
-class BlankFragment5 : BaseFragment() {
-
-    private var _binding: FragmentBlank5Binding? = null
-    private val mBinding get() = _binding ?: throw RuntimeException("FragmentBlankBinding fragment error")
-    private lateinit var blankViewModel: BlankViewModel
-    private lateinit var viewModelFactory: ViewModelProvider.Factory
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentBlank5Binding.inflate(layoutInflater, container, false)
-        return mBinding.root
+    override fun getBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentBlank5Binding {
+        return FragmentBlank5Binding.inflate(layoutInflater, container, false)
     }
-    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        actionId = R.id.action_blankFragment5_to_blankFragment
+
+        commonButton = binding.button
+
         super.onViewCreated(view, savedInstanceState)
-        viewModelFactory = BlankViewModelFactory()
-        blankViewModel = ViewModelProvider(this, viewModelFactory).get(BlankViewModel::class.java)
 
-        blankViewModel.userClicksOnButton(R.id.action_blankFragment5_to_blankFragment)
-        mBinding.button.setOnClickListener {
-            lifecycleScope.launch {
-                repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    blankViewModel.uiState.collect {
-                        NavigateState(it, view)
-                    }
-                }
-                //BaseFragment.navigate(view,R.id.action_blankFragment2_to_blankFragment3)
-
-
-            }
-        }
     }
-
-
 }

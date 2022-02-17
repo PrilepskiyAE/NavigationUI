@@ -20,42 +20,18 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class BlankFragment : BaseFragment() {
+class BlankFragment : BaseFragment<FragmentBlankBinding>() {
 
-    private var _binding: FragmentBlankBinding? = null
-    private val mBinding get() = _binding ?: throw RuntimeException("FragmentBlankBinding fragment error")
-    private lateinit var blankViewModel: BlankViewModel
-    private lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentBlankBinding.inflate(layoutInflater, container, false)
-        return mBinding.root
+    override fun getBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentBlankBinding {
+        return FragmentBlankBinding.inflate(layoutInflater, container, false)
     }
 
-    @SuppressLint("UnsafeRepeatOnLifecycleDetector")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        actionId = R.id.action_blankFragment_to_blankFragment2
+
+        commonButton = binding.button
+
         super.onViewCreated(view, savedInstanceState)
-        viewModelFactory = BlankViewModelFactory()
-        blankViewModel = ViewModelProvider(this, viewModelFactory).get(BlankViewModel::class.java)
-        blankViewModel.userClicksOnButton(R.id.action_blankFragment_to_blankFragment2)
-        mBinding.button.setOnClickListener {
-            lifecycleScope.launch {
-               repeatOnLifecycle(Lifecycle.State.STARTED){
-                   blankViewModel.uiState.collect {
 
-                           NavigateState(it, view)
-
-                   }
-               }
-
-            }
-         //   val navController = Navigation.findNavController(view)
-         //   navController.navigate(R.id.action_blankFragment_to_blankFragment2)
-          //  BaseFragment.navigate(view,R.id.action_blankFragment_to_blankFragment2)
-        }
     }
 }
