@@ -50,5 +50,6 @@ dependencies {
     // Testing Navigation
     androidTestImplementation("androidx.navigation:navigation-testing:2.4.1")
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 
 }

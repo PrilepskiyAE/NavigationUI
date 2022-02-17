@@ -7,20 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.viewbinding.ViewBinding
-import com.example.navigationui.databinding.FragmentBlankBinding
 import com.example.navigationui.viewmodel.BlankViewModel
-import com.example.navigationui.viewmodel.BlankViewModelFactory
 import com.example.navigationui.viewmodel.LatestNavigateUiState
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
 abstract class BaseFragment<T: ViewBinding> : Fragment() {
-    lateinit var blankViewModel: BlankViewModel
+    val blankViewModel: BlankViewModel by viewModels()
     var actionId: Int = 0
 
     private var _binding: T? = null
@@ -50,11 +48,7 @@ abstract class BaseFragment<T: ViewBinding> : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        blankViewModel = ViewModelProvider(this, BlankViewModelFactory()).get(BlankViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
